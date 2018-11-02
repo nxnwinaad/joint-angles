@@ -1,17 +1,18 @@
 % Rose Hendrix
 % Test REBA calculation on participant data from 2018
+% Example script for how the pipeline works
 
 clearvars; close all;
 % add necessaries to path
-addpath('helper_functions');
+addpath('../helper-functions');
 addpath('../kinect-logging/data');
 
 % load the file
-load bodyAndRGB_trial4
-jo = generateJointObject(bodylogger,'kinect');
+load bodyAndRGB_trial21
+jo = generateJointObject(bodylogger,'kinect'); %n.b. this can be done online
 
 for ii = 2:size(bodylogger, 3)
-    modifications = [0 0 0 0]; % assumptions and a priori knowledge
+    modifications = [0 0 0 0]; % assumptions and a priori knowledge, see arREBA for details
     frameScore(ii) = arREBA(jo(ii),modifications);
     
 end

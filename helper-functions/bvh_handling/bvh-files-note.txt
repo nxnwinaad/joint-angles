@@ -1,0 +1,1 @@
+These scripts are the minimum necessary scripts to read and handle .bvh files for this application. I got them from the MoCap Toolbox (https://www.jyu.fi/hytk/fi/laitokset/mutku/en/research/materials/mocaptoolbox) and have not altered them. -Rose
