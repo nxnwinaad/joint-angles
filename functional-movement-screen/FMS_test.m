@@ -49,5 +49,17 @@ end
 figure
 hold on
 for ii = 2:size(bodylogger, 3)
-    plot(ii,jointAngles(ii).shoulderRotateRight,'k.','MarkerSize',14)
+    plot(ii,jointAngles(ii).shoulderHorizAbductRight,'k.','MarkerSize',14)
+end
+
+figure
+hold on
+for ii = 2:size(bodylogger, 3)
+    plot(ii,jointAngles(ii).shoulderHorizAbductLeft,'k.','MarkerSize',14)
+end
+
+figure
+hold on
+for ii = 2:size(bodylogger, 3)
+    plot(ii,jointAngles(ii).trunkBend,'k.','MarkerSize',14)
 end

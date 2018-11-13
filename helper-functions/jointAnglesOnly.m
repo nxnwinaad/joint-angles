@@ -71,6 +71,8 @@ else
     joang.shoulderIntRotateLeft = [];
 end
 
+joang.shoulderHorizAbductLeft = projectedAngle(bicepVecLeft,shoulderVec,upperBackVec);
+
 %% Arm - Right
 bicepVecRight = jo.ShoulderRight - jo.ElbowRight;
 joang.shoulderRotateRight = projectedAngle(-1*bicepVecRight,upperBackVec,shoulderVec);
@@ -86,6 +88,7 @@ if joang.elbowBendRight > elbowThresh %  plane is probably extractable)
 else
     joang.shoulderIntRotateRight = [];
 end
+joang.shoulderHorizAbductRight = projectedAngle(bicepVecRight,-1*shoulderVec,upperBackVec);
 
 end
 
