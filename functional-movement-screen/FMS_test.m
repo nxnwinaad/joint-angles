@@ -13,6 +13,20 @@ addpath('../kinect-logging/data');
 
 % load the file
 load bodyAndRGB_trial21
+
+% % Preprocessing for OpenSim loading calculation
+% onestosave = [47 186 188 203 206 292 282 242 152]; % by inspection
+% imgexport = videologger(:,:,:,onestosave);
+% for ii = 1:length(onestosave)
+%     imwrite(imgexport(:,:,:,ii),['validationImg' num2str(ii) '.png'])
+% end
+% 
+% 
+% [~,skelexportframsnums] = intersect(bodytimelogger,(videotimelogger(onestosave)));
+% skelexport = reshape(bodylogger(:,:,skelexportframsnums),25*3,length(onestosave))';
+% csvwrite('cartesianPositionData.csv',skelexport);
+% 
+
 jo = generateJointObject(bodylogger,'kinect'); %n.b. this can be done online
 
 for ii = 2:size(bodylogger, 3)
