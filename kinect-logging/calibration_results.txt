@@ -1,0 +1,26 @@
+Kinect calibration results 11/29/2018
+(note: fsolve did not converge for the color calibration)
+------------ Color Camera Parameters ------------
+Focal Length X: 1084.0365
+Focal Length Y: 1084.0365
+Principal Point X: 962.6226
+Principal Point Y: 525.7585
+Rotation Wrt Depth camera:
+   0.99994    0.010227   0.0025461
+ -0.010233     0.99994   0.0024571
+-0.0025208   -0.002483     0.99999
+Translation x,y,z wrt depth camera(meters): 0.052031   0.0010242 -0.00069158
+Radial Distortion 2nd order: 0.014011
+Radial Distortion 4th order: 0.00088967
+Radial Distortion 6th order: -0.0046351
+--------------------------------------------
+ 
+------------ Depth Intrinsics ------------
+Focal Length X: 364.5516
+Focal Length Y: 364.5516
+Principal Point X: 258.6461
+Principal Point Y: 207.6142
+Radial Distortion 2nd order: 207.6142
+Radial Distortion 4th order: -0.27213
+Radial Distortion 6th order: 0.084455
+--------------------------------------------
