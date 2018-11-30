@@ -15,7 +15,7 @@ clearvars; close all
 
 k2 = Kin2('color','body');
 
-trialnum = 19;
+trialnum = 22;
 filename = ['data/bodyandRGB_trial' num2str(trialnum) '.mat'];
 
 % images sizes
