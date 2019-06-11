@@ -40,7 +40,7 @@ end
 %average weight of a person (found somewhere online)
 averageWeight = 62.14; %N, 137 lbs
 %weight of an average person's arm is 6% of total body weight (found somewhere online)
-armWeight = 0.06*averageWeight; %lbs
+armWeight = 0.06*averageWeight;
 %the forearm is ~2/3 the length of the upper arm and the hand is ~2/3 the
 %length of forearm
 %the average forearm + hand length is 1.5 ft
@@ -53,13 +53,6 @@ totalarmLength = 2.85; %ft
 %density
 forearmWeight = (forearmhandLength/totalarmLength)*armWeight;
 upperarmWeight = (bicepLength/totalarmLength)*armWeight;
-
-%%straight arm moment reaction calculation (right side)
-%the x,y,z coordinate contributions from each angle was calculated and then
-%added together to locate the arm in space
-    %the y direction is pointing in the direction of the left hand
-    %the x direction is pointing in the direction that the eyes look
-    %the z direction is pointing in the direction of the head
 
 %% Calculating moment from the wrist/finger locations from the Kinect
 %units taken from the Kinect are in m
@@ -83,12 +76,6 @@ M_forearm_r = cross(helpmeplease_r.',F_fore);
 bicep_vec_r = elbow_pos_r - shoulder_pos_r;
 M_bicep_r = cross(bicep_vec_r.'./2,F_bicep);
 M_tot_r = M_forearm_r + M_bicep_r;
-
-% forearm_vec_r = hand_pos_r - elbow_pos_r;
-% M_forearm_r = cross(forearm_vec_r.'./2,F_fore);
-% 
-% bicep_vec_r = elbow_pos_r - shoulder_pos_r;
-% M_bicep_r = cross(bicep_vec_r.'./2,F_bicep) + M_forearm_r;
     
 %left hand calcs
 shoulder_pos_l = [jo.ShoulderLeft];
@@ -102,12 +89,6 @@ M_forearm_l = cross(helpmeplease_l.',F_fore);
 bicep_vec_l = elbow_pos_l - shoulder_pos_l;
 M_bicep_l = cross(bicep_vec_l.'./2,F_bicep);
 M_tot_l = M_forearm_l + M_bicep_l;
-
-% forearm_vec_l = hand_pos_l - elbow_pos_l;
-% M_forearm_l = cross(forearm_vec_l.'./2,F_fore);
-% 
-% bicep_vec_l = elbow_pos_l - shoulder_pos_l;
-% M_bicep_l = cross(bicep_vec_l.'./2,F_bicep) + M_forearm_l;
 
 %% Attempt to use Angles to determine positionof elbow/fingers
 % please note that code to locate finger position and calculating moment from forearm is wrong
@@ -160,18 +141,18 @@ M_tot_l = M_forearm_l + M_bicep_l;
 % M_fore = cross((forearm_vec./2).',F_fore);
 % 
 % M_tot = M_bicep + M_fore;
-
-%% test section (sorry)
- figure
- for i = 63
-     plot(bodylogger(1,:,i),bodylogger(2,:,i),".")
-     %plot(bodylogger(1,[1:4 9:end],i),bodylogger(2,[1:4 9:end],i),".")
-     axis([-0.6 0.6 -1.5 1])
-     plotnum = i;
-     title(plotnum)
-     %axis([-450 -150 -300 0])
-     pause(0.6)
- end
- %notes: for trial23, video is ahead 22, for trial21, video is ahead 5
-%shoulderanglesonly = [12:17]
-%testframes = [jointAngles(:,[9,26,51,77,113,128,167,182])]
+% 
+ %% test section to show graphs and compare with video 
+%  figure
+%  for i = 63
+%      plot(bodylogger(1,:,i),bodylogger(2,:,i),".")
+%      %plot(bodylogger(1,[1:4 9:end],i),bodylogger(2,[1:4 9:end],i),".")
+%      axis([-0.6 0.6 -1.5 1])
+%      plotnum = i;
+%      title(plotnum)
+%      %axis([-450 -150 -300 0])
+%      pause(0.6)
+%  end
+%  %notes: for trial23, video is ahead 22, for trial21, video is ahead 5
+% %shoulderanglesonly = [12:17]
+% %testframes = [jointAngles(:,[9,26,51,77,113,128,167,182])]
