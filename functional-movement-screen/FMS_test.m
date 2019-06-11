@@ -12,10 +12,10 @@ addpath('../helper-functions');
 addpath('../kinect-logging/data');
 
 % load the file
-load bodyAndRGB_trial21
+load bodyAndRGB_trial23
 
 % Preprocessing for OpenSim loading calculation
-onestosave = [47 186 188 203 206 292 282 242 152]; % by inspection
+onestosave = [48 73 99 135 150 189 204]; % by inspection
 imgexport = videologger(:,:,:,onestosave);
 for ii = 1:length(onestosave)
     figure(ii)
@@ -41,28 +41,28 @@ skelexport = bodylogger(:,:,skelexportframsnums);
 save('cartesianPositionData.mat','skelexport');
 
 
-jo = generateJointObject(bodylogger,'kinect'); %n.b. this can be done online
+jo = generateJointObject(skelexport,'kinect'); %n.b. this can be done online
 
-for ii = 2:size(bodylogger, 3)
-    modifications = [0 0 0 0]; % assumptions and a priori knowledge, see arREBA for details
-    jointAngles(ii) = jointAnglesOnly(jo(ii));
-    
-end
-
-figure
-hold on
-for ii = 2:size(bodylogger, 3)
-    plot(ii,jointAngles(ii).shoulderHorizAbductRight,'k.','MarkerSize',14)
-end
-
-figure
-hold on
-for ii = 2:size(bodylogger, 3)
-    plot(ii,jointAngles(ii).shoulderHorizAbductLeft,'k.','MarkerSize',14)
-end
-
-figure
-hold on
-for ii = 2:size(bodylogger, 3)
-    plot(ii,jointAngles(ii).trunkBend,'k.','MarkerSize',14)
-end
+% for ii = 2:size(bodylogger, 3)
+%     modifications = [0 0 0 0]; % assumptions and a priori knowledge, see arREBA for details
+%     jointAngles(ii) = jointAnglesOnly(jo(ii));
+%     
+% end
+% 
+% figure
+% hold on
+% for ii = 2:size(bodylogger, 3)
+%     plot(ii,jointAngles(ii).shoulderHorizAbductRight,'k.','MarkerSize',14)
+% end
+% 
+% figure
+% hold on
+% for ii = 2:size(bodylogger, 3)
+%     plot(ii,jointAngles(ii).shoulderHorizAbductLeft,'k.','MarkerSize',14)
+% end
+% 
+% figure
+% hold on
+% for ii = 2:size(bodylogger, 3)
+%     plot(ii,jointAngles(ii).trunkBend,'k.','MarkerSize',14)
+% end

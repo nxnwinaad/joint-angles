@@ -15,7 +15,7 @@ function joang = jointAnglesOnly(jo)
 % shock = modifications(3);
 % activityscore = modifications(4);
 
-elbowThresh = 5;
+elbowThresh = 30;
 
 %% Trunk Score
 % main: trunk bending
@@ -75,8 +75,8 @@ joang.shoulderHorizAbductLeft = projectedAngle(bicepVecLeft,shoulderVec,upperBac
 
 %% Arm - Right
 bicepVecRight = jo.ShoulderRight - jo.ElbowRight;
-joang.shoulderRotateRight = projectedAngle(-1*bicepVecRight,upperBackVec,shoulderVec);
-joang.shoulderAbductRight = projectedAngle(bicepVecRight,upperBackVec,jo.ChestNormal);
+joang.shoulderRotateRight = projectedAngle(bicepVecRight,-1*upperBackVec,shoulderVec);
+joang.shoulderAbductRight = projectedAngle(bicepVecRight,-1*upperBackVec,jo.ChestNormal);
 
 % elbow
 forearmVecRight = jo.ElbowRight - jo.WristRight;
@@ -84,7 +84,11 @@ elbowPlaneRight = cross(bicepVecRight,forearmVecRight);
 joang.elbowBendRight = projectedAngle(bicepVecRight,forearmVecRight,elbowPlaneRight);
 
 if joang.elbowBendRight > elbowThresh %  plane is probably extractable)
-    joang.shoulderIntRotateRight = acosd(abs(dot(elbowPlaneRight,[0 1 0]))/(norm(elbowPlaneRight)));
+    %joang.shoulderIntRotateRight = acosd(abs(dot(elbowPlaneRight,[0 1 0]))/(norm(elbowPlaneRight)));
+    joang.shoulderIntRotateRight = projectedAngle(elbowPlaneRight,[0 0 1],[0 1 0]);
+%     if joang.shoulderIntRotateRight < 10
+%         joang.shoulderIntRotateRight = [];
+%     end
 else
     joang.shoulderIntRotateRight = [];
 end

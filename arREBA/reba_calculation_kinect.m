@@ -8,7 +8,7 @@ addpath('../helper-functions');
 addpath('../kinect-logging/data');
 
 % load the file
-load bodyAndRGB_trial21
+load bodyAndRGB_trial22
 jo = generateJointObject(bodylogger,'kinect'); %n.b. this can be done online
 
 for ii = 2:size(bodylogger, 3)
@@ -17,8 +17,8 @@ for ii = 2:size(bodylogger, 3)
     
 end
 
-figure;
-plot(frameScore)
+% figure;
+% plot(frameScore)
 
 % unnecessary for kinect, used for when labels already exist
 % labels = fulllabels.data((startend(trialnum,1):startend(trialnum,2)),[1 2 4 6 8]);

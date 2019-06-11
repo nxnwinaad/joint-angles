@@ -1,5 +1,5 @@
 % Rose Hendrix
-% test thinger to log and record body position and 
+% 
 %
 % Juan R. Terven, jrterven@hotmail.com
 % Diana M. Cordova, diana_mce@hotmail.com
@@ -15,7 +15,7 @@ clearvars; close all
 
 k2 = Kin2('color','body');
 
-trialnum = 22;
+trialnum = 24;
 filename = ['data/bodyandRGB_trial' num2str(trialnum) '.mat'];
 
 % images sizes
@@ -46,6 +46,7 @@ maxframe = 10000;
 
 bodytimelogger = zeros(1,maxframe);
 bodylogger = zeros(3,25,maxframe);
+bodyloggerMapped = zeros(2,25,maxframe);
 bodyframe = 0;
 
 videotimelogger = zeros(1,maxframe);
@@ -71,14 +72,19 @@ while true
         % preallocate the video and time logger arrays
         videotimelogger(videoframe) = timesnap;
         videologger(:,:,:,videoframe) = color;
-        
+        c.im = imshow(color,[]);
+
         [bodies, fcp, timeStamp] = k2.getBodies('Quat');
         numBodies = size(bodies,2);
+        
         if numBodies > 0
             % Save the first body positions to the bodylogger
             bodyframe = bodyframe + 1;
             bodytimelogger(bodyframe) = timesnap;
             bodylogger(:,:,bodyframe) = bodies(1).Position;
+            bodyloggerMapped(:,:,bodyframe) = round(COL_SCALE.*k2.mapCameraPoints2Color(bodylogger(:,:,bodyframe)')');
+            videotimeloggerData(bodyframe) = timesnap;
+            videologgerData(:,:,:,bodyframe) = color;
         end
 
     end
@@ -101,7 +107,10 @@ bodytimelogger = bodytimelogger(1:bodyframe);
 bodylogger = bodylogger(:,:,1:bodyframe);
 videotimelogger = videotimelogger(1:videoframe);
 videologger = videologger(:,:,:,1:videoframe);
+bodyloggerMapped = bodyloggerMapped(:,:,1:bodyframe);
+videotimeloggerData = videotimeloggerData(1:bodyframe);
+videologgerData = videologgerData(:,:,:,1:bodyframe);
 
 % save to proper file
-save(filename,'-v7.3','bodytimelogger','bodylogger','videologger','videotimelogger')
+save(filename,'-v7.3','bodytimelogger','bodylogger','videologger','videotimelogger','bodyloggerMapped','videotimeloggerData','videologgerData')
 
